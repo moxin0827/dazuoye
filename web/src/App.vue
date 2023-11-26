@@ -1,3 +1,5 @@
+<!-- eslint-disable no-undef -->
+<!-- eslint-disable no-undef -->
 <template>
   <NavBar />
   <router-view></router-view>
@@ -11,6 +13,25 @@ import "bootstrap/dist/js/bootstrap"
 export default {
   components: {
     NavBar
+  },
+  setup() {
+
+
+    // $.ajax({
+    //   url: "http://127.0.0.1:3000/user/account/register/",
+    //   type: "post",
+    //   data: {
+    //    username: "yxc2",
+    //    password: "123",
+    //    confirmedPassword: "123",
+     //  },
+      // success(resp) {
+     //    console.log(resp);
+    //   },
+    //   error(resp) {
+    //     console.log(resp);
+    //  }
+    // })
   }
 }
 </script>
@@ -19,10 +40,5 @@ export default {
 body {
   background-image: url("@/assets/images/background.png");
   background-size: cover;
-}
-</style>
-<style lang="less">
-body{
-  font-family: cheese;
 }
 </style>
