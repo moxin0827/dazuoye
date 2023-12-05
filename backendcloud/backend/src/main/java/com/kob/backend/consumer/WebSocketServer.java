@@ -8,7 +8,6 @@ import com.kob.backend.mapper.RecordMapper;
 import com.kob.backend.mapper.UserMapper;
 import com.kob.backend.pojo.Bot;
 import com.kob.backend.pojo.User;
-import com.sun.org.apache.xpath.internal.operations.Mult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -19,9 +18,7 @@ import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArraySet;
 
 @Component
 @ServerEndpoint("/websocket/{token}")  // 注意不要以'/'结尾
@@ -31,7 +28,7 @@ public class WebSocketServer {
     private User user;
     private Session session = null;
 
-    private static UserMapper userMapper;
+    public static UserMapper userMapper;
     public static RecordMapper recordMapper;
     private static BotMapper botMapper;
     public static RestTemplate restTemplate;
@@ -74,9 +71,19 @@ public class WebSocketServer {
 
     @OnClose
     public void onClose() {
-        System.out.println("disconnected!");
+        // 关闭链接
+        System.out.println("Disconnected!");
+        // 将user从users中删去
         if (this.user != null) {
             users.remove(this.user.getId());
+
+            // matchPool.remove(this.user);
+
+            // 问题描述: 开始匹配后，刷新当前页面，断开连接，再次匹配，实现自己和自己匹配
+            // 解决方案: 断开链接时，删除已经存在在匹配池里的player信息，避免自己和自己匹配
+            MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
+            data.add("user_id", this.user.getId().toString());
+            restTemplate.postForObject(removePlayerurl, data, String.class);
         }
     }
 
@@ -144,6 +151,7 @@ public class WebSocketServer {
     }
 
     private void move(int direction) {
+        System.out.println("move " + direction);
         if (game.getPlayerA().getId().equals(user.getId())) {
             if (game.getPlayerA().getBotId().equals(-1))  // 亲自出马
                 game.setNextStepA(direction);

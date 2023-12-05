@@ -1,5 +1,3 @@
-<!-- eslint-disable no-undef -->
-<!-- eslint-disable no-undef -->
 <template>
   <NavBar />
   <router-view></router-view>
@@ -23,5 +21,7 @@ export default {
 body {
   background-image: url("@/assets/images/background.png");
   background-size: cover;
+  font-family: 'AlimamaDaoLiTi'; /* 使用你在 font.css 中定义的字体名 */
 }
 </style>
+
