@@ -32,7 +32,14 @@ public class Game extends Thread {
 
     /**
      * 构造函数
-      */
+     * @param rows 游戏网格的行数。
+     * @param cols 游戏网格的列数。
+     * @param inner_walls_count 游戏网格内部墙壁的数量。
+     * @param idA 机器人 A 的 ID。
+     * @param botA 机器人 A 对象。
+     * @param idB 机器人 B 的 ID。
+     * @param botB 机器人 B 对象
+     */
     public Game(
             Integer rows,
             Integer cols,
@@ -78,7 +85,7 @@ public class Game extends Thread {
 
     /**
      * 设置玩家A的下一步操作
-     * @param nextStepA
+     * @param nextStepA 机器人 A 要执行的下一步操作。
      */
     public void setNextStepA(Integer nextStepA) {
         lock.lock();
@@ -90,7 +97,7 @@ public class Game extends Thread {
     }
     /**
      * 设置玩家B的下一步操作
-     * @param nextStepB
+     * @param nextStepB 机器人 B 要执行的下一步操作。
      */
     public void setNextStepB(Integer nextStepB) {
         lock.lock();
@@ -221,7 +228,7 @@ public class Game extends Thread {
 
     /**
      * 等待两名玩家的下一步操作
-     * @param player
+     * @param
      * @return
      */
     private boolean nextStep() {
@@ -281,8 +288,7 @@ public class Game extends Thread {
 
     /**
      * 判断两名玩家下一步操作是否合法
-     * @param playerA
-     * @param playerB
+
      * @return
      */
     private void judge() {
@@ -306,8 +312,6 @@ public class Game extends Thread {
 
     /**
      * 向玩家A和玩家B发送消息
-     * @param playerA
-     * @param playerB
      * @param message
      */
     private void sendAllMessage(String message) {
@@ -319,8 +323,6 @@ public class Game extends Thread {
 
     /**
      * 向两个Client传递移动信息
-     * @param playerA
-     * @param playerB
      */
     private void sendMove() {
         lock.lock();
@@ -338,8 +340,7 @@ public class Game extends Thread {
 
     /**
      * 将地图转换为字符串形式
-     * @param player
-     * @param direction
+     * @param
      * @return
      */
     private String getMapString() {
@@ -365,7 +366,7 @@ public class Game extends Thread {
 
     /**
      * 将比赛结果保存到数据库中
-     * @param message
+     * @param
      */
     private void saveToDatabase() {
         Integer ratingA = WebSocketServer.userMapper.selectById(playerA.getId()).getRating();
@@ -402,7 +403,7 @@ public class Game extends Thread {
 
     /**
      * 向两个Client公布结果
-     * @param message
+     * @param
      */
     private void sendResult() {
         JSONObject resp = new JSONObject();
@@ -414,7 +415,6 @@ public class Game extends Thread {
 
     /**
      * 游戏逻辑处理
-     * @return
      */
     @Override
     public void run() {
