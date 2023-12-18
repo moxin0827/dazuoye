@@ -20,6 +20,9 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * WebSocketServer类用于处理WebSocket连接和游戏逻辑
+ */
 @Component
 @ServerEndpoint("/websocket/{token}")  // 注意不要以'/'结尾
 public class WebSocketServer {
@@ -36,6 +39,9 @@ public class WebSocketServer {
     private final static String addPlayerUrl = "http://127.0.0.1:3001/player/add/";
     private final static String removePlayerurl = "http://127.0.0.1:3001/player/remove/";
 
+    /**
+     * 用于自动装配的依赖注入
+     */
     @Autowired
     public void setUserMapper(UserMapper userMapper) {
         WebSocketServer.userMapper = userMapper;
@@ -53,6 +59,9 @@ public class WebSocketServer {
         WebSocketServer.restTemplate = restTemplate;
     }
 
+    /**
+     * 当建立新的WebSocket连接时调用的方法
+     */
     @OnOpen
     public void onOpen(Session session, @PathParam("token") String token) throws IOException {
         this.session = session;
@@ -69,6 +78,9 @@ public class WebSocketServer {
         System.out.println(users);
     }
 
+    /**
+     * 当WebSocket连接关闭时调用的方法
+     */
     @OnClose
     public void onClose() {
         // 关闭链接
@@ -87,6 +99,9 @@ public class WebSocketServer {
         }
     }
 
+    /**
+     * 用于两个玩家开始游戏的方法
+     */
     public static void startGame(Integer aId, Integer aBotId, Integer bId, Integer bBotId) {
         User a = userMapper.selectById(aId), b = userMapper.selectById(bId);
         Bot botA = botMapper.selectById(aBotId), botB = botMapper.selectById(bBotId);
@@ -134,6 +149,9 @@ public class WebSocketServer {
             users.get(b.getId()).sendMessage(respB.toJSONString());
     }
 
+    /**
+     * 用于开始与一个机器人匹配的方法
+     */
     private void startMatching(Integer botId) {
         System.out.println("start matching!");
         MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
@@ -143,6 +161,9 @@ public class WebSocketServer {
         restTemplate.postForObject(addPlayerUrl, data, String.class);
     }
 
+    /**
+     * 用于停止与一个机器人匹配的方法
+     */
     private void stopMatching() {
         System.out.println("stop matching");
         MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
@@ -150,6 +171,9 @@ public class WebSocketServer {
         restTemplate.postForObject(removePlayerurl, data, String.class);
     }
 
+    /**
+     * 用于处理游戏中玩家的移动
+     */
     private void move(int direction) {
         System.out.println("move " + direction);
         if (game.getPlayerA().getId().equals(user.getId())) {
@@ -161,6 +185,9 @@ public class WebSocketServer {
         }
     }
 
+    /**
+     * 用于处理传入的WebSocket消息
+     */
     @OnMessage
     public void onMessage(String message, Session session) {  // 当做路由
         System.out.println("receive message!");
@@ -175,11 +202,17 @@ public class WebSocketServer {
         }
     }
 
+    /**
+     * 用于处理WebSocket错误
+     */
     @OnError
     public void onError(Session session, Throwable error) {
         error.printStackTrace();
     }
 
+    /**
+     * 用于通过WebSocket连接发送消息
+     */
     public void sendMessage(String message) {
         synchronized (this.session) {
             try {

@@ -7,8 +7,6 @@
  * ServerEndpointExporter是一个Spring WebSocket API中的类,用于自动扫描并注册ServerEndpoint
  *
  * 因此,在WebSocketConfig中使用@Bean注解的serverEndpointExporter()方法,可以自动注册WebSocket的ServerEndpoint,从而实现WebSocket的服务
- * @auther 张恒嘉
- * @date 2023/11/10
  */
 package com.kob.backend.config;
 

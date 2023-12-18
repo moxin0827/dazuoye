@@ -221,8 +221,9 @@ public class Game extends Thread {
 
     /**
      * 等待两名玩家的下一步操作
-     * @param player
+     * @param
      * @return
+     *
      */
     private boolean nextStep() {
         try {
@@ -281,9 +282,7 @@ public class Game extends Thread {
 
     /**
      * 判断两名玩家下一步操作是否合法
-     * @param playerA
-     * @param playerB
-     * @return
+     * @param
      */
     private void judge() {
         List<Cell> cellsA = playerA.getCells();
@@ -306,8 +305,6 @@ public class Game extends Thread {
 
     /**
      * 向玩家A和玩家B发送消息
-     * @param playerA
-     * @param playerB
      * @param message
      */
     private void sendAllMessage(String message) {
@@ -319,8 +316,7 @@ public class Game extends Thread {
 
     /**
      * 向两个Client传递移动信息
-     * @param playerA
-     * @param playerB
+     * @param
      */
     private void sendMove() {
         lock.lock();
@@ -338,8 +334,7 @@ public class Game extends Thread {
 
     /**
      * 将地图转换为字符串形式
-     * @param player
-     * @param direction
+     * @param
      * @return
      */
     private String getMapString() {
@@ -365,7 +360,7 @@ public class Game extends Thread {
 
     /**
      * 将比赛结果保存到数据库中
-     * @param message
+     * @param
      */
     private void saveToDatabase() {
         Integer ratingA = WebSocketServer.userMapper.selectById(playerA.getId()).getRating();
@@ -402,7 +397,7 @@ public class Game extends Thread {
 
     /**
      * 向两个Client公布结果
-     * @param message
+     * @param
      */
     private void sendResult() {
         JSONObject resp = new JSONObject();

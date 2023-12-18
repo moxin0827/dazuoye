@@ -10,9 +10,6 @@
  * 接着根据用户ID查询数据库中的用户信息,如果查询不到用户,则抛出异常。
  * 最后创建一个UsernamePasswordAuthenticationToken对象,将用户信息封装到其中,并放入Spring Security上下文中,
  * 从而实现基于JWT的认证功能。
- *
- * @auther 张恒嘉
- * @date 2023/11/10
  */
 package com.kob.backend.config.filter;
 

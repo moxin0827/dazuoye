@@ -8,8 +8,6 @@
  * 最后设置响应头中的Access-Control-Allow-Methods、Access-Control-Max-Age、Access-Control-Allow-Credentials,并执行过滤器链
  *
  * init和destroy方法为空实现,因为CORS不需要在实例化时进行初始化,也不需要在销毁时进行清理
- * @auther 张恒嘉
- * @date 2023/11/10
  */
 package com.kob.backend.config;
 
