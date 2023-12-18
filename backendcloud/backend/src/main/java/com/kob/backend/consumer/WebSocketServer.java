@@ -77,7 +77,7 @@ public class WebSocketServer {
         if (this.user != null) {
             users.remove(this.user.getId());
 
-            // matchPool.remove(this.user);
+            //matchPool.remove(this.user);
 
             // 问题描述: 开始匹配后，刷新当前页面，断开连接，再次匹配，实现自己和自己匹配
             // 解决方案: 断开链接时，删除已经存在在匹配池里的player信息，避免自己和自己匹配

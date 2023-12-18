@@ -21,7 +21,7 @@ export default {
     },
     setup() {
         const store = useStore();
-        const socketUrl = `wss://app6326.acapp.acwing.com.cn/websocket/${store.state.user.token}/`;
+        const socketUrl = `wss://www.cypercricket.love/websocket/${store.state.user.token}/`;
 
         store.commit("updateLoser", "none");
         store.commit("updateIsRecord", false);

@@ -63,7 +63,7 @@ export default {
 
         const refresh_bots = () => {
             $.ajax({
-                url: "https://app6326.acapp.acwing.com.cn/api/user/bot/getlist/",
+                url: "https://www.cypercricket.love/api/user/bot/getlist/",
                 type: "get",
                 headers: {
                     Authorization: "Bearer " + store.state.user.token,

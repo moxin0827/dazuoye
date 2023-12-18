@@ -91,7 +91,7 @@ export default {
         const pull_page = page => {
             current_page = page;
             $.ajax({
-                url: "https://app6326.acapp.acwing.com.cn/api/record/getlist/",
+                url: "https://www.cypercricket.love/api/record/getlist/",
                 data: {
                     page,
                 },
