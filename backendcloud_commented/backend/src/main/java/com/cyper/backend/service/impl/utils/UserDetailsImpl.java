@@ -22,7 +22,7 @@ public class UserDetailsImpl implements UserDetails {
      * 获取用户的权限集合。
      * 在这个实现中，权限集合返回null。
      *
-     * @return Collection<? extends GrantedAuthority> 用户的权限集合
+     * @return 用户的权限集合
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

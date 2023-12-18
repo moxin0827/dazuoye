@@ -24,7 +24,7 @@ public class GetListServiceImpl implements GetListService {
      * 获取机器人列表的方法。
      * 返回当前登录用户所拥有的所有机器人的列表。
      *
-     * @return List<Bot> 用户拥有的机器人列表
+     * @return 用户拥有的机器人列表
      */
     @Override
     public List<Bot> getList() {

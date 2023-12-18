@@ -25,7 +25,7 @@ public class RemoveServiceImpl implements RemoveService {
      * 接收包含要移除机器人信息的数据，进行机器人移除的处理，并返回移除结果。
      *
      * @param data 包含要移除机器人信息的Map对象
-     * @return Map<String, String> 包含移除结果信息的映射
+     * @return 包含移除结果信息的映射
      */
     @Override
     public Map<String, String> remove(Map<String, String> data) {

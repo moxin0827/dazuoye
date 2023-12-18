@@ -29,7 +29,7 @@ public class RegisterServiceImpl implements RegisterService {
      * @param username 用户名
      * @param password 密码
      * @param confirmedPassword 确认密码
-     * @return Map<String, String> 包含注册结果信息的映射
+     * @return 包含注册结果信息的映射
      */
     @Override
     public Map<String, String> register(String username, String password, String confirmedPassword) {

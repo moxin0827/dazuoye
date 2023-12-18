@@ -27,7 +27,7 @@ public class UpdateServiceImpl implements UpdateService {
      * 接收包含要更新的机器人信息的数据，进行机器人信息更新的处理，并返回更新结果。
      *
      * @param data 包含要更新机器人信息的Map对象
-     * @return Map<String, String> 包含更新结果信息的映射
+     * @return 包含更新结果信息的映射
      */
     @Override
     public Map<String, String> update(Map<String, String> data) {

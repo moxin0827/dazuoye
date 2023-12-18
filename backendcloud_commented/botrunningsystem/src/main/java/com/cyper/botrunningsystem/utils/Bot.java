@@ -46,7 +46,7 @@ public class Bot implements java.util.function.Supplier<Integer> {
      * @param sx 起始x坐标
      * @param sy 起始y坐标
      * @param steps 蛇的移动步骤
-     * @return List<Cell> 表示蛇在网格中的位置的单元格列表
+     * @return 表示蛇在网格中的位置的单元格列表
      */
     public List<Cell> getCells(int sx, int sy, String steps) {
         steps = steps.substring(1, steps.length() - 1);

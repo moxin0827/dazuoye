@@ -14,7 +14,7 @@ public interface LoginService {
      *
      * @param username 用户名
      * @param password 密码
-     * @return Map<String, String> 包含JWT令牌的映射
+     * @return 包含JWT令牌的映射
      */
     public Map<String, String> getToken(String username, String password);
 }
